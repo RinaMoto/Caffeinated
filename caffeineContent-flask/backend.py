@@ -12,9 +12,11 @@ app = Flask(__name__)
 
 load_dotenv()
 db_pass = os.getenv('DB_PASS')
-
+user_name = os.getenv('USER_NAME')
+db_name = os.getenv('DB_NAME')
+                      
 def client_setup():
-    client = MongoClient(f"mongodb+srv://Rina_easterday:{db_pass}@cs290.wwlyi.mongodb.net/Usagi_db?retryWrites=true&w=majority", tlsCAFile=certifi.where())
+    client = MongoClient(f"mongodb+srv://{user_name}:{db_pass}@cs290.wwlyi.mongodb.net/{db_name}?retryWrites=true&w=majority", tlsCAFile=certifi.where())
     return client
 
 @app.route('/', methods=['POST'])
