@@ -23,7 +23,7 @@ def get_vids():
         urls = []
         try:
             videos = scrapetube.get_search(
-                "latte art",
+                "about caffeine",
                 limit=3
             )
             count = 0
@@ -58,38 +58,7 @@ def find_coffees():
 
     else:
         return "bad request", 400
-
-@app.route('/calculator/results', methods=['POST'])
-def get_serving():
-    if request.method == 'POST':
-        json_response = json.loads(request.data)
-
-        drink = json_response["drink"]
-        client = client_setup()
-        for x in client.Usagi_db.caffine.find({
-            'drink': f'{drink}'
-        }).limit(1):
-            volume = round(float(x['Volume (ml)']), 2)
-            content = x['Caffeine (mg)']
-
-        # volume_info to be added to response json from microservice
-        volume_info = {"volume": volume, "drink": drink}
-
-        # data to be sent to microservice
-        data = {'weight': json_response["weight"], 'weight_units': json_response["unit"], 'content': content, 'content_units': 'mg'}
         
-        # call microservice and update json object with max serving amount
-        ENDPOINT = f"http://127.0.0.1:4000/max"
-        headers = {'Content-type': 'application/json'}
-        response = requests.post(ENDPOINT, json=data, headers=headers)
-        service_response = response.json()
-        service_response.update(volume_info)
-
-        return json.dumps(service_response), 200
-
-    else:
-        return "bad request", 400
-
 @app.route('/results', methods=['POST'])
 def find_caffeine():
     if request.method == 'POST':
@@ -127,6 +96,37 @@ def find_caffeine():
                 caffeine_content.append({"name": i, "Caffeine": caf_per_cup, "url": im_name })
 
         return json.dumps(caffeine_content)
+    else:
+        return "bad request", 400
+
+@app.route('/calculator/results', methods=['POST'])
+def get_serving():
+    if request.method == 'POST':
+        json_response = json.loads(request.data)
+
+        drink = json_response["drink"]
+        client = client_setup()
+        for x in client.Usagi_db.caffine.find({
+            'drink': f'{drink}'
+        }).limit(1):
+            volume = round(float(x['Volume (ml)']), 2)
+            content = x['Caffeine (mg)']
+
+        # volume_info to be added to response json from microservice
+        volume_info = {"volume": volume, "drink": drink}
+
+        # data to be sent to microservice
+        data = {'weight': json_response["weight"], 'weight_units': json_response["unit"], 'content': content, 'content_units': 'mg'}
+        
+        # call microservice and update json object with max serving amount
+        ENDPOINT = f"http://127.0.0.1:4000/max"
+        headers = {'Content-type': 'application/json'}
+        response = requests.post(ENDPOINT, json=data, headers=headers)
+        service_response = response.json()
+        service_response.update(volume_info)
+
+        return json.dumps(service_response), 200
+
     else:
         return "bad request", 400
 

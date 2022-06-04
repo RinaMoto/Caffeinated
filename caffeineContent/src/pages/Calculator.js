@@ -18,9 +18,13 @@ const Calculator = ({setValues}) => {
 
     function submitCalculations(e) {
         e.preventDefault();
-        console.log(profile);
-        setValues(profile);
-        navigate("/calculator/results");
+        if (isNaN(profile.weight)) {
+            alert("You must enter your weight")
+        }
+        else {
+            setValues(profile);
+            navigate("/calculator/results");
+        }    
     }
 
     const findDrinks = async () => {
@@ -77,7 +81,7 @@ const Calculator = ({setValues}) => {
                         </label>    
                     </div>
                 </div> 
-                    <button className="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-yellow-300 font-medium rounded lg text-sm px-5 py-2.5 mr-2 mb-2">
+                    <button className="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 mb-2">
                     Calculate
                     </button>         
                 </form>

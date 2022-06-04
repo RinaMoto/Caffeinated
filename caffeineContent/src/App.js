@@ -20,6 +20,9 @@ function App() {
         <Link to="/">
           <img src={coffee} className="h-10 m-6" alt="logo" />
         </Link>
+        <Link to="/">
+          <h1 className="text-orange-300 italic">caffeinated</h1>
+        </Link>
       </header>
       <div>
         <Routes>

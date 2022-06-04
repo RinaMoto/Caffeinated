@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import {AiFillHome} from 'react-icons/ai';
 
 const Database = () => {
     const [drinks, setDrinks] = useState([]);
@@ -44,12 +46,12 @@ const Database = () => {
                                 onChange={e => inputHandler(e)}
                                 className="outline outline-1 w-1/2 px-3 mb-3 rounded-md"
                             />
-                                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <table className="w-full text-sm text-left text-gray-500">
+                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                                         <tr>
                                             <th className="px-6 py-3">Drink</th>
                                             <th className="px-6 py-3">Caffeine content (mg)</th>
-                                            <th className="px-6 py-3">Volume</th>
+                                            <th className="px-6 py-3">Volume (ml)</th>
                                         </tr>
 
                                     </thead>
@@ -62,7 +64,7 @@ const Database = () => {
                                             }
                                             }).map((drink, i) => {
                                             return (
-                                                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={i}>
+                                                <tr className="bg-white border-b" key={i}>
                                                     <th className="px-6 py-4">{drink.drink}</th>
                                                     <th className="px-6 py-4">{drink.content}</th>
                                                     <th className="px-6 py-4">{drink.volume}</th>
@@ -74,6 +76,9 @@ const Database = () => {
                             </div>
                         </div>
                     </div>
+                    <Link to="/">
+                        <button className="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-4 mr-2 mb-8"><AiFillHome className="inline-block mb-0.5 mr-1" />Home</button>
+                    </Link>
                 </div>
             : null}
         </>

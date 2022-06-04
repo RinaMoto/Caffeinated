@@ -1,9 +1,7 @@
 import React, {useState, useEffect, lazy} from 'react';
 import { Link } from 'react-router-dom';
 import {AiFillHome} from 'react-icons/ai';
-import SelectInput from '@mui/material/Select/SelectInput';
-import { requirePropFactory } from '@mui/material';
-
+import Spinner from 'react-spinner-material';
 
 const DrinksResult = ({ drinks }) => {
     const result = Object.keys(drinks).map((key) => drinks[key]);
@@ -66,7 +64,7 @@ const DrinksResult = ({ drinks }) => {
             </Link>
             
         </div>
-        : null}
+        : <div className="grid place-content-center gap-1 my-20"><Spinner radius={120} color={"#333"} stroke={2} visible={true} /></div>}
         </>
     );
 };

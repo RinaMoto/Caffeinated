@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import {AiFillHome} from 'react-icons/ai';
 
 const CalculatorResults = ({values}) => {
     const [inputValues, setInputValues] = useState("");
@@ -42,6 +43,12 @@ const CalculatorResults = ({values}) => {
                         </div>
                     </div>
                 </div> 
+                <Link to="/">
+                    <button className="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-4 mr-2 mb-2"><AiFillHome className="inline-block mb-0.5 mr-1" />Home</button>
+                </Link>
+                <Link to="/calculator">
+                    <button className="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-4 mr-2 mb-2">Calculate other drinks</button>
+                </Link>
             </div>
         : null}
         </>

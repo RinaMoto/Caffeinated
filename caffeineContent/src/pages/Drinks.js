@@ -79,7 +79,7 @@ const Drinks = ({ drinksToSet }) => {
                     </div>
                 </div>
                 <button   
-                    className="text-white bg-red-600 hover:bg-yellow-800 focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-5 mb-2"
+                    className="text-white bg-red-600 hover:bg-red-800 focus:ring-red-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-5 mb-2"
                     onClick={clearSelect}>
                     Clear selected
                 </button> 
